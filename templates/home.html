@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+
+    <title>YouTube Trending Analysis</title>
+</head>
+
+<body>
+    <div class="relative bg-gray-700 overflow-hidden">
+        <div class="max-w-4xl h-xl mx-auto py-12 ">
+            <div class="mx-auto rounded-2xl w-64 text-center text-white py-8"><i class="fab fa-youtube fa-8x"></i></div>
+            <h2 class="text-gray-900 py-8 sm:text-4xl text-center">
+                <span class="block tracking-tight text-4xl font-prompt font-extrabold text-white">YouTube Trending Analysis Recommendation</span>
+                <span class="block py-4 font-prompt text-white text-2xl">การแนะนำวิดีโอด้วยการวิเคราะห์ YouTube Trending</span>
+            </h2>
+            <button onclick='self.location.href="http://127.0.0.1:5000/0"'   id={{ key }} class="truncate transition overflow-hidden transform bg-white w-full mx-2 my-2 p-2 rounded-lg font-prompt hover:scale-110"> {{ value }}</button>
+            <span class="block py-4 px-8 font-prompt text-white text-xl"><i class="far fa-calendar-check"></i> เลือกประเภทวิดีโอที่ต้องการ</span>
+            <div class="bg-gray-800 rounded-2xl">
+                <div class="grid py-4 px-8 grid-cols-4">
+                    {% for key,value in data.items() %}
+                    <div class="w-48">
+                        <button onclick='self.location.href="http://127.0.0.1:5000/list_user/{{ key }}"'   id={{ key }} class="truncate transition overflow-hidden transform bg-white w-full mx-2 my-2 p-2 rounded-lg font-prompt hover:scale-110"> {{ value }}</button>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="my-24"></div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+
+<script src="https://kit.fontawesome.com/1ddc0f7b0c.js" crossorigin="anonymous"></script>
+
+</html>
