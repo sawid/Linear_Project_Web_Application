@@ -34,7 +34,12 @@
                 </div>
             </div>
             <div class="bg-gray-800 rounded-2xl">
+                    
                 <div class="grid py-4 px-8 grid-cols-4">
+                    {% if pick_list == [] %}
+                        <div class="col-span-4"><p class="mt-4 mb-4 font-prompt text-white text-5xl text-center font-bold">ไม่มีวิดีโอในหมวดนี้</p></div>
+                        
+                    {% endif %}
                     {% for title,img_id in zip(pick_list, img_list) %}
                     <button id={{ img_id }} onclick="toggle_list(this.id)" value="1" href="" class="w-48 transition hover:scale-110 transform rounded-lg bg-white my-2 mx-2">
                         <div class="mt-4 w-full mx-9">
