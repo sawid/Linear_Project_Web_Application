@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+
+    <title>YouTube Trending Analysis</title>
+</head>
+
+<body class="bg-gray-700">
+    <div class="relative bg-gray-700 overflow-hidden h-xl">
+        <div class="max-w-4xl h-xl mx-auto py-12 ">
+            <h2 class="text-gray-900 py-8 sm:text-4xl text-center">
+                        <span class="block tracking-tight text-4xl font-bold font-prompt text-white"><span class="px-3 font-bold font-mew bg-white rounded-lg text-gray-600">Details</span></span>
+            </h2>
+            <div class="grid grid-cols-3 justify-items-stretch ">
+                <div class="">
+                    <button onclick='self.location.href="http://127.0.0.1:5000/"' class="bg-white text-gray-600 px-2 rounded-lg mr-2 text-3xl transition hover:scale-110 transform hover:bg-transparent	hover:text-white hover:border hover:border-white " href="../"><i class="fas fa-home"></i></button>
+                </div>
+                <div>
+                    <div class="block py-2 px-8 font-prompt text-white text-xl"><i class="far fa-calendar-check"></i> รายละเอียดของวิดีโอ </div>
+                </div>
+                <div class="text-right">
+                    
+                </div>
+            </div>
+            <div class="bg-gray-800 rounded-2xl">
+                <div class="grid py-4 px-8 grid-cols-4">
+                        <div class="col-span-4">
+                                <h2 class="text-2xl text-white font-prompt font-bold">{{ title_vid }}</h2>
+                        </div>
+                        <div class="col-span-1">
+                                <div class="mt-4 w-full">
+                                    <img class="rounded-lg center-img" src="https://i.ytimg.com/vi/{{ item_id }}/default.jpg" alt="Girl in a jacket" width="240" height="180">
+                                </div>
+                                <p class="truncate overflow-hidden w-full px-4 my-2 p-2 font-prompt "> {{ title }}</p>
+                        </div>
+                        <div class="col-span-2 p-4 overflow-x-auto">
+                                <p class="truncate whitespace-pre font-prompt text-white">{{ des }}</p>
+                                <p class="truncate whitespace-pre font-prompt text-white">Views : {{ views }} views</p>
+                                <p class="truncate whitespace-pre font-prompt text-white">Likes : {{ likes }} times</p>
+                                <p class="truncate whitespace-pre font-prompt text-white">Dislikes : {{ dislikes }} times</p>
+                                <button id="data_button" name="data_button" type="submit" value="None" onclick="location.href='https://www.youtube.com/watch?v={{ item_id }}'" class="bg-white mt-4 text-gray-600 px-2 mb-2 rounded-lg mr-2 text-xl h-8 transition hover:bg-transparent	hover:text-white hover:border hover:border-white hover:scale-110 transform font-normal font-prompt" href="../"><i class="fab fa-youtube"></i>  YouTube</button>
+                        </div>
+                        <div class="col-span-1">
+                                {% if condition == 1 %}
+                                <p class="mt-4 text-green-500 text-9xl text-center">
+                                        <i class="fas fa-grin-beam"></i>
+                                </p>
+                                {% endif %}
+                                {% if condition == -1 %}
+                                <p class="mt-4 text-red-500 text-9xl text-center">
+                                        <i class="fas fa-frown"></i>
+                                </p>
+                                {% endif %}
+                        </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</body>
+
+<script src="https://kit.fontawesome.com/1ddc0f7b0c.js" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='js/get_list_function.js')}}"></script>
+</html>

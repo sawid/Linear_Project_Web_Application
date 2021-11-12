@@ -11,46 +11,41 @@
 </head>
 
 <body class="bg-gray-700">
-    <div class="relative bg-gray-700 overflow-hidden h-xl">
+    <div class="relative bg-gray-700 overflow-hidden">
         <div class="max-w-4xl h-xl mx-auto py-12 ">
             <h2 class="text-gray-900 py-8 sm:text-4xl text-center">
-                {% for key,value in data.items() %}
-                    {% if genre == key %}
-                        <span class="block tracking-tight text-4xl font-bold font-prompt text-white">Category : <span class="px-3 font-bold font-mew bg-white rounded-lg text-gray-600">{{value}}</span></span>
-                     {% endif %}
-                {% endfor %}
+                {% for key,value in data.items() %} {% if genre == key %}
+                <span class="block tracking-tight text-4xl font-bold font-prompt text-white">Category : <span class="px-3 font-bold font-mew bg-white rounded-lg text-gray-600">{{value}}</span></span>
+                {% endif %} {% endfor %}
             </h2>
             <div class="grid grid-cols-3 justify-items-stretch ">
                 <div class="">
                     <button onclick='self.location.href="http://127.0.0.1:5000/"' class="bg-white text-gray-600 px-2 rounded-lg mr-2 text-3xl transition hover:scale-110 transform hover:bg-transparent	hover:text-white hover:border hover:border-white " href="../"><i class="fas fa-home"></i></button>
                 </div>
                 <div>
-                    <div class="block py-2 px-8 font-prompt text-white text-xl"><i class="far fa-calendar-check"></i> เลือกวิดีโอที่คุณชอบ </div>
+                    <div class="block py-2 px-8 font-prompt text-white text-xl"><i class="fas fa-check-circle"></i> ผลการแนะนำ </div>
                 </div>
                 <div class="text-right">
-                    <form id="get_pick_form" method="POST" action="/list_user/{{ genre }}">
-                        <button id="data_button" name="data_button" type="submit" value="None" onclick="submit_list(this.id)" class="bg-white text-gray-600 px-2 mb-2 rounded-lg mr-2 text-xl h-8 transition hover:bg-transparent	hover:text-white hover:border hover:border-white hover:scale-110 transform font-normal font-prompt" href="../">ยืนยันรายการ</button>
-                    </form>
                 </div>
             </div>
             <div class="bg-gray-800 rounded-2xl">
                 <div class="grid py-4 px-8 grid-cols-4">
-                    {% for title,img_id in zip(pick_list, img_list) %}
-                    <button id={{ img_id }} onclick="toggle_list(this.id)" value="1" href="" class="w-48 transition hover:scale-110 transform rounded-lg bg-white my-2 mx-2">
+                    {% for img_id, title in zip(entry_data, tile_vid) %}
+                    <button id={{ img_id }} onclick="location.href='http://127.0.0.1:5000/detail/{{ img_id  }}'" value="1" href="" class="w-48 transition hover:scale-110 transform rounded-lg bg-white my-2 mx-2">
                         <div class="mt-4 w-full mx-9">
                             <img class="rounded-lg center-img" src="https://i.ytimg.com/vi/{{ img_id }}/default.jpg" alt="Girl in a jacket" width="120" height="90">
                         </div>
                         <p class="truncate overflow-hidden w-full px-4 my-2 p-2 font-prompt "> {{ title }}</p>
-                    </button>
-                    {% endfor %}
+                    </button> {% endfor %}
                 </div>
                 <div class="my-24"></div>
             </div>
         </div>
-        
+
     </div>
 </body>
 
 <script src="https://kit.fontawesome.com/1ddc0f7b0c.js" crossorigin="anonymous"></script>
 <script src="{{url_for('static', filename='js/get_list_function.js')}}"></script>
+
 </html>
